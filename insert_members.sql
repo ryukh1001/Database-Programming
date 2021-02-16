@@ -1,0 +1,10 @@
+insert into member(id, pwd) values('admin', 'admin');
+insert into member values('test1', '1234', '1990/01/02');
+insert into member values('test2', '1234', '1993/05/02');
+insert into member values('test3', '1234', '1997/11/12');
+insert into member values('test4', '1234', '1995/10/01');
+insert into member values('test5', '1234', '1999/07/14');
+insert into member values('test6', '1234', '1998/04/09');
+insert into member values('test7', '1234', '2000/09/08');
+insert into member values('test8', '1234', '2002/02/20');
+insert into member values('test9', '1234', '1985/08/27');

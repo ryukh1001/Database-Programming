@@ -7,4 +7,4 @@ Database Programming Term Project (2019-1학기)
 
 기간: 2개월
 
-기술스택: Java, Oracle DB, sql, JDBC
+기술스택: Java, JDBC, Oracle DB, SQL, PL/SQL

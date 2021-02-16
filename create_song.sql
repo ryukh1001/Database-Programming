@@ -1,0 +1,4 @@
+CREATE TABLE song( songId NUMBER PRIMARY KEY,
+		   title VARCHAR2(30) NOT NULL,
+		   artist VARCHAR2(20) NOT NULL,
+		   hit NUMBER DEFAULT 0);

@@ -1,7 +1,7 @@
-create or replace procedure insert_member(id IN VARCHAR2, --¾ÆÀÌµğ
-                            pwd IN VARCHAR2, --ºñ¹Ğ¹øÈ£
-                            birth IN VARCHAR2, --»ı³â¿ùÀÏ
-                            result OUT VARCHAR2) --Ãâ·Â °á°ú¹®
+create or replace procedure insert_member(id IN VARCHAR2, --ì•„ì´ë””
+                            pwd IN VARCHAR2, --ë¹„ë°€ë²ˆí˜¸
+                            birth IN VARCHAR2, --ìƒë…„ì›”ì¼
+                            result OUT VARCHAR2) --ì¶œë ¥ ê²°ê³¼ë¬¸
 IS
   age NUMBER;
   nLength			NUMBER;
@@ -33,21 +33,21 @@ BEGIN
     RAISE too_young;
   END IF;
 
-  /* »ç¿ëÀÚ µî·Ï */
+  /* ì‚¬ìš©ì ë“±ë¡ */
   INSERT INTO member 
   VALUES(id, pwd, birth);
 
   COMMIT;
-  result := 'È¸¿ø°¡ÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.';
+  result := 'íšŒì›ê°€ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.';
   
 EXCEPTION
     WHEN underflow_length THEN
-       result := '¾ÏÈ£´Â 4ÀÚ¸® ÀÌ»óÀÌ¾î¾ß ÇÕ´Ï´Ù';
+       result := 'ì•”í˜¸ëŠ” 4ìë¦¬ ì´ìƒì´ì–´ì•¼ í•©ë‹ˆë‹¤';
     WHEN invalid_value THEN
-       result := '¾ÏÈ£¿¡ °ø¶õÀº ÀÔ·ÂµÇÁö ¾Ê½À´Ï´Ù.';
+       result := 'ì•”í˜¸ì— ê³µë€ì€ ì…ë ¥ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.';
     WHEN wrong_birth_form THEN
-        result := '»ı³â¿ùÀÏÀ» "yyyy/mm/dd" Çü½ÄÀ¸·Î ÀÛ¼ºÇÏ¼¼¿ä.';
+        result := 'ìƒë…„ì›”ì¼ì„ "yyyy/mm/dd" í˜•ì‹ìœ¼ë¡œ ì‘ì„±í•˜ì„¸ìš”.';
     WHEN too_young THEN
-        result := '¸¸ 14¼¼ ÀÌ»ó¸¸ °¡ÀÔÇÒ ¼ö ÀÖ½À´Ï´Ù.';
+        result := 'ë§Œ 14ì„¸ ì´ìƒë§Œ ê°€ì…í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.';
 
 END;

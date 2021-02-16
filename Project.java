@@ -3,9 +3,9 @@ import java.util.Scanner;
 
 public class Project {
 	public static void main(String[] args) {
-		String DB_URL="jdbc:oracle:thin:@localhost:1521:orcl";
-		String DB_USER="ryu";
-		String DB_PASSWORD="1234";
+		String DB_URL="jdbc:oracle:thin:@****";
+		String DB_USER="****";
+		String DB_PASSWORD="****";
 		
 		Connection con=null;
 		String query=null;
@@ -31,16 +31,16 @@ public class Project {
 			
 			while(true) {
 				System.out.println("--------------------------");
-				System.out.println("¾Æ·¡ ¸Ş´º Áß ¿øÇÏ´Â ¸Ş´º¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-				System.out.println("1. ·Î±×ÀÎ");
-				System.out.println("2. È¸¿ø°¡ÀÔ");
-				System.out.println("3. ÇÁ·Î±×·¥ Á¾·á");
+				System.out.println("ì•„ë˜ ë©”ë‰´ ì¤‘ ì›í•˜ëŠ” ë©”ë‰´ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+				System.out.println("1. ë¡œê·¸ì¸");
+				System.out.println("2. íšŒì›ê°€ì…");
+				System.out.println("3. í”„ë¡œê·¸ë¨ ì¢…ë£Œ");
 				System.out.println("--------------------------");
 				menu = scan.nextInt();
 				scan.nextLine();
 				
-				if(menu==1) {	//·Î±×ÀÎ
-					System.out.println("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+				if(menu==1) {	//ë¡œê·¸ì¸
+					System.out.println("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 					id = scan.nextLine();
 					query = "SELECT * FROM member WHERE id = ?";
 					pstmt = con.prepareStatement(query);
@@ -48,9 +48,9 @@ public class Project {
 					rs = pstmt.executeQuery();
 					
 					if(rs.next() == false)
-						System.out.println("Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµğÀÔ´Ï´Ù.");
+						System.out.println("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•„ì´ë””ì…ë‹ˆë‹¤.");
 					else {
-						System.out.println("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+						System.out.println("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 						pwd = scan.nextLine();
 						
 						query = "SELECT * FROM member WHERE id = ? AND pwd = ?";
@@ -60,26 +60,26 @@ public class Project {
 						rs = pstmt.executeQuery();
 						
 						if(rs.next() == false)
-							System.out.println("Àß¸øµÈ ºñ¹Ğ¹øÈ£ÀÔ´Ï´Ù.");
+							System.out.println("ì˜ëª»ëœ ë¹„ë°€ë²ˆí˜¸ì…ë‹ˆë‹¤.");
 						else {
-							System.out.println("·Î±×ÀÎµÇ¾ú½À´Ï´Ù.");
+							System.out.println("ë¡œê·¸ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.");
 							break;
 						}
 					}
 				}
-				else if(menu==2) {	//È¸¿ø°¡ÀÔ
-					System.out.println("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+				else if(menu==2) {	//íšŒì›ê°€ì…
+					System.out.println("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 					id = scan.nextLine();
 					query = "SELECT * FROM member WHERE id = ?";
 					pstmt = con.prepareStatement(query);
 					pstmt.setString(1,id);
 					rs = pstmt.executeQuery();
 					if(rs.next()==true)
-						System.out.println("ÀÌ¹Ì »ç¿ëÁßÀÎ ¾ÆÀÌµğ ÀÔ´Ï´Ù.");
+						System.out.println("ì´ë¯¸ ì‚¬ìš©ì¤‘ì¸ ì•„ì´ë”” ì…ë‹ˆë‹¤.");
 					else {
-						System.out.println("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+						System.out.println("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 						pwd = scan.nextLine();
-						System.out.println("»ı³â¿ùÀÏÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+						System.out.println("ìƒë…„ì›”ì¼ì„ ì…ë ¥í•˜ì„¸ìš”.");
 						birth = scan.nextLine();
 				
 						callname = "{call insert_member(?,?,?,?)}";
@@ -93,30 +93,30 @@ public class Project {
 						System.out.println(result);
 					}
 				}
-				else if(menu==3) {  //ÇÁ·Î±×·¥ Á¾·á
-					System.out.println("ÇÁ·Î±×·¥ÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.");
+				else if(menu==3) {  //í”„ë¡œê·¸ë¨ ì¢…ë£Œ
+					System.out.println("í”„ë¡œê·¸ë¨ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 					return;
 				}
 				else
-					System.out.println("¸Ş´º ¹øÈ£¸¦ Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+					System.out.println("ë©”ë‰´ ë²ˆí˜¸ë¥¼ ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 			}
 			
-			if(id.equals("admin")) { //°ü¸®ÀÚ ·Î±×ÀÎ
-				System.out.println("¾È³çÇÏ¼¼¿ä °ü¸®ÀÚ´Ô.");
+			if(id.equals("admin")) { //ê´€ë¦¬ì ë¡œê·¸ì¸
+				System.out.println("ì•ˆë…•í•˜ì„¸ìš” ê´€ë¦¬ìë‹˜.");
 				while(true) {
 					System.out.println("--------------------------");
-					System.out.println("¾Æ·¡ ¸Ş´º Áß ¿øÇÏ´Â ¸Ş´º¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-					System.out.println("1. ³ë·¡ µî·Ï");
-					System.out.println("2. È¸¿ø ¸®½ºÆ®");
-					System.out.println("3. ÇÁ·Î±×·¥ Á¾·á");
+					System.out.println("ì•„ë˜ ë©”ë‰´ ì¤‘ ì›í•˜ëŠ” ë©”ë‰´ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+					System.out.println("1. ë…¸ë˜ ë“±ë¡");
+					System.out.println("2. íšŒì› ë¦¬ìŠ¤íŠ¸");
+					System.out.println("3. í”„ë¡œê·¸ë¨ ì¢…ë£Œ");
 					System.out.println("--------------------------");
 					menu = scan.nextInt();
 					scan.nextLine();
 					
-					if(menu == 1) { //³ë·¡ Ãß°¡
-						System.out.println("Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+					if(menu == 1) { //ë…¸ë˜ ì¶”ê°€
+						System.out.println("ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”.");
 						title = scan.nextLine();
-						System.out.println("¾ÆÆ¼½ºÆ®¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+						System.out.println("ì•„í‹°ìŠ¤íŠ¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 						artist = scan.nextLine();
 						
 						callname = "{call insert_song(?,?,?)}";
@@ -128,7 +128,7 @@ public class Project {
 						result = cstmt.getString(3);
 						System.out.println(result);
 					}
-					else if(menu == 2) { //È¸¿ø ¸®½ºÆ® Ãâ·Â
+					else if(menu == 2) { //íšŒì› ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
 						System.out.println("ID       PWD        BIRTH");
 						query = "SELECT * FROM member";
 						stmt = con.createStatement();
@@ -136,33 +136,33 @@ public class Project {
 						while(rs.next())
 							System.out.println(rs.getString(1)+"     "+rs.getString(2)+"     "+rs.getString(3));
 					}
-					else if(menu==3) {  //ÇÁ·Î±×·¥ Á¾·á
-						System.out.println("ÇÁ·Î±×·¥ÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.");
+					else if(menu==3) {  //í”„ë¡œê·¸ë¨ ì¢…ë£Œ
+						System.out.println("í”„ë¡œê·¸ë¨ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 						return;
 					}
 					else
-						System.out.println("¸Ş´º ¹øÈ£¸¦ Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+						System.out.println("ë©”ë‰´ ë²ˆí˜¸ë¥¼ ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 				}
 			}
-			else { //È¸¿ø ·Î±×ÀÎ
-				System.out.println("È¯¿µÇÕ´Ï´Ù "+id+"´Ô.");
+			else { //íšŒì› ë¡œê·¸ì¸
+				System.out.println("í™˜ì˜í•©ë‹ˆë‹¤ "+id+"ë‹˜.");
 				while(true) {
 					System.out.println("--------------------------");
-					System.out.println("¾Æ·¡ ¸Ş´º Áß ¿øÇÏ´Â ¸Ş´º¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-					System.out.println("1. ³ë·¡ °Ë»ö");
-					System.out.println("2. °¡¼ö °Ë»ö");
-					System.out.println("3. ÀÎ±âÂ÷Æ®"); //ÀÎ±âÂ÷Æ® - hit °ªÀÌ Å« ¼ø¼­
-					System.out.println("4. ÇÃ·¹ÀÌ¸®½ºÆ® ÆíÁı");
-					System.out.println("5. ÇÁ·Î±×·¥ Á¾·á");
+					System.out.println("ì•„ë˜ ë©”ë‰´ ì¤‘ ì›í•˜ëŠ” ë©”ë‰´ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+					System.out.println("1. ë…¸ë˜ ê²€ìƒ‰");
+					System.out.println("2. ê°€ìˆ˜ ê²€ìƒ‰");
+					System.out.println("3. ì¸ê¸°ì°¨íŠ¸"); //ì¸ê¸°ì°¨íŠ¸ - hit ê°’ì´ í° ìˆœì„œ
+					System.out.println("4. í”Œë ˆì´ë¦¬ìŠ¤íŠ¸ í¸ì§‘");
+					System.out.println("5. í”„ë¡œê·¸ë¨ ì¢…ë£Œ");
 					System.out.println("--------------------------");
 					menu = scan.nextInt();
 					scan.nextLine();
 					
 					if(menu == 1) {
-						System.out.println("Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+						System.out.println("ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”.");
 						title = scan.nextLine();
 						
-						System.out.println("¹øÈ£       Á¦¸ñ        ¾ÆÆ¼½ºÆ®");
+						System.out.println("ë²ˆí˜¸       ì œëª©        ì•„í‹°ìŠ¤íŠ¸");
 						query = "SELECT songId, title, artist FROM song WHERE title=?";
 						pstmt = con.prepareStatement(query);
 						pstmt.setString(1, title);
@@ -171,10 +171,10 @@ public class Project {
 							System.out.println(rs.getString("songId")+"     "+rs.getString("title")+"     "+rs.getString("artist"));
 					}
 					else if(menu ==2) {
-						System.out.println("°¡¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+						System.out.println("ê°€ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 						artist = scan.nextLine();
 						
-						System.out.println("¹øÈ£       Á¦¸ñ        ¾ÆÆ¼½ºÆ®");
+						System.out.println("ë²ˆí˜¸       ì œëª©        ì•„í‹°ìŠ¤íŠ¸");
 						query = "SELECT songId, title, artist FROM song WHERE artist=?";
 						pstmt = con.prepareStatement(query);
 						pstmt.setString(1, artist);
@@ -182,30 +182,30 @@ public class Project {
 						while(rs.next())
 							System.out.println(rs.getString("songId")+"     "+rs.getString("title")+"     "+rs.getString("artist"));
 					}
-					else if(menu ==3) { //ÀÎ±âÂ÷Æ® º¸±â
-						System.out.println("¹øÈ£       Á¦¸ñ        ¾ÆÆ¼½ºÆ®");
+					else if(menu ==3) { //ì¸ê¸°ì°¨íŠ¸ ë³´ê¸°
+						System.out.println("ë²ˆí˜¸       ì œëª©        ì•„í‹°ìŠ¤íŠ¸");
 						query = "select * from song where ROWNUM<=20 Order by hit DESC, title ASC";
 						stmt = con.createStatement();
 						rs = stmt.executeQuery(query);
 						while(rs.next())
 							System.out.println(rs.getInt("songId")+"     "+rs.getString("title")+"     "+rs.getString("artist"));
 					}
-					else if(menu ==4) { //ÇÃ·¹ÀÌ¸®½ºÆ® ÆíÁı
+					else if(menu ==4) { //í”Œë ˆì´ë¦¬ìŠ¤íŠ¸ í¸ì§‘
 						while(true) {
-							System.out.println("----------ÇöÀç ÇÃ·¹ÀÌ¸®½ºÆ®----------");
-							System.out.println("¹øÈ£       Á¦¸ñ        ¾ÆÆ¼½ºÆ®");
+							System.out.println("----------í˜„ì¬ í”Œë ˆì´ë¦¬ìŠ¤íŠ¸----------");
+							System.out.println("ë²ˆí˜¸       ì œëª©        ì•„í‹°ìŠ¤íŠ¸");
 							query = "SELECT s.songId, s.title, s.artist FROM song s, playlist p WHERE s.songId=p.songId AND p.id=?";
 							pstmt = con.prepareStatement(query);
 							pstmt.setString(1, id);
 							rs = pstmt.executeQuery();
 							while(rs.next())
 								System.out.println(rs.getString("songId")+"     "+rs.getString("title")+"     "+rs.getString("artist"));
-							System.out.println("¿øÇÏ´Â ¸Ş´º¸¦ ¼±ÅÃÇÏ¼¼¿ä: 1. ³ë·¡ Ãß°¡       2. ³ë·¡ »èÁ¦       3. ³ª°¡±â");
+							System.out.println("ì›í•˜ëŠ” ë©”ë‰´ë¥¼ ì„ íƒí•˜ì„¸ìš”: 1. ë…¸ë˜ ì¶”ê°€       2. ë…¸ë˜ ì‚­ì œ       3. ë‚˜ê°€ê¸°");
 							menu = scan.nextInt();
 							scan.nextLine();
 							
-							if(menu == 1) { //ÇÃ·¹ÀÌ¸®½ºÆ®¿¡ ³ë·¡ Ãß°¡ - insert_playlist ÇÁ·Î½ÃÀú »ç¿ë
-								System.out.println("Ãß°¡ÇÒ ³ë·¡ ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+							if(menu == 1) { //í”Œë ˆì´ë¦¬ìŠ¤íŠ¸ì— ë…¸ë˜ ì¶”ê°€ - insert_playlist í”„ë¡œì‹œì € ì‚¬ìš©
+								System.out.println("ì¶”ê°€í•  ë…¸ë˜ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 								songId= scan.nextInt();
 								scan.nextLine();
 				
@@ -218,8 +218,8 @@ public class Project {
 								result = cstmt.getString(3);
 								System.out.println(result);
 							}
-							else if(menu == 2) { //ÇÃ·¹ÀÌ¸®½ºÆ®¿¡ ³ë·¡ »èÁ¦ - delete_playlist ÇÁ·Î½ÃÀú »ç¿ë
-								System.out.println("»èÁ¦ÇÒ ³ë·¡ ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+							else if(menu == 2) { //í”Œë ˆì´ë¦¬ìŠ¤íŠ¸ì— ë…¸ë˜ ì‚­ì œ - delete_playlist í”„ë¡œì‹œì € ì‚¬ìš©
+								System.out.println("ì‚­ì œí•  ë…¸ë˜ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 								songId= scan.nextInt();
 								scan.nextLine();
 						
@@ -232,18 +232,18 @@ public class Project {
 								result = cstmt.getString(3);
 								System.out.println(result);
 							}
-							else if(menu ==3) //ÇÃ·¹ÀÌ¸®½ºÆ® ÆíÁı ¿¡¼­ ³ª°¡±â
+							else if(menu ==3) //í”Œë ˆì´ë¦¬ìŠ¤íŠ¸ í¸ì§‘ ì—ì„œ ë‚˜ê°€ê¸°
 								break;
 							else
-								System.out.println("¸Ş´º ¹øÈ£¸¦ Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+								System.out.println("ë©”ë‰´ ë²ˆí˜¸ë¥¼ ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 						}
 					}
-					else if(menu == 5) {  //ÇÁ·Î±×·¥ Á¾·á
-						System.out.println("ÇÁ·Î±×·¥ÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.");
+					else if(menu == 5) {  //í”„ë¡œê·¸ë¨ ì¢…ë£Œ
+						System.out.println("í”„ë¡œê·¸ë¨ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 						return;
 					}
 					else
-						System.out.println("¸Ş´º ¹øÈ£¸¦ Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+						System.out.println("ë©”ë‰´ ë²ˆí˜¸ë¥¼ ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 				}
 			}
 		} catch(SQLException e) {e.printStackTrace();}

@@ -1,6 +1,6 @@
-create or replace procedure insert_playlist(id IN VARCHAR2, --¾ÆÀÌµğ
-                            nsongId NUMBER, --³ë·¡ ¹øÈ£
-                            result OUT VARCHAR2) --Ãâ·Â °á°ú¹®
+create or replace procedure insert_playlist(id IN VARCHAR2, --ì•„ì´ë””
+                            nsongId NUMBER, --ë…¸ë˜ ë²ˆí˜¸
+                            result OUT VARCHAR2) --ì¶œë ¥ ê²°ê³¼ë¬¸
 IS
   CURSOR song_exist IS SELECT songId FROM song WHERE songId=nsongId;
   song_id song.songId%TYPE;
@@ -15,15 +15,15 @@ BEGIN
   IF song_exist%NOTFOUND THEN
     RAISE no_data;
   ELSE  
-  /* ÇÃ·¹ÀÌ¸®½ºÆ® ³ë·¡ Ãß°¡ */
+  /* í”Œë ˆì´ë¦¬ìŠ¤íŠ¸ ë…¸ë˜ ì¶”ê°€ */
   INSERT INTO playlist VALUES(id, nsongId);
   UPDATE song SET hit=hit+1 WHERE songId=nsongId;
   COMMIT;
-  result := 'ÇÃ·¹ÀÌ¸®½ºÆ®¿¡ ³ë·¡°¡ Ãß°¡µÇ¾ú½À´Ï´Ù.';
+  result := 'í”Œë ˆì´ë¦¬ìŠ¤íŠ¸ì— ë…¸ë˜ê°€ ì¶”ê°€ë˜ì—ˆìŠµë‹ˆë‹¤.';
   END IF;
   
   CLOSE song_exist;
 EXCEPTION
     WHEN no_data THEN
-       result := 'Á¸ÀçÇÏÁö ¾Ê´Â ³ë·¡ ¹øÈ£ÀÔ´Ï´Ù.'; 
+       result := 'ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ë…¸ë˜ ë²ˆí˜¸ì…ë‹ˆë‹¤.'; 
 END;

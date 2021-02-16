@@ -1,6 +1,6 @@
-create or replace procedure insert_song(title IN VARCHAR2, --³ë·¡ Á¦¸ñ
-                            artist IN VARCHAR2, --°¡¼ö ÀÌ¸§
-                            result OUT VARCHAR2) --Ãâ·Â °á°ú¹®
+create or replace procedure insert_song(title IN VARCHAR2, --ë…¸ë˜ ì œëª©
+                            artist IN VARCHAR2, --ê°€ìˆ˜ ì´ë¦„
+                            result OUT VARCHAR2) --ì¶œë ¥ ê²°ê³¼ë¬¸
                             
 IS
   empty_title  EXCEPTION;
@@ -16,16 +16,16 @@ BEGIN
     RAISE empty_artist;
   END IF;
     
-  /* ³ë·¡ µî·Ï */
+  /* ë…¸ë˜ ë“±ë¡ */
   INSERT INTO song(songId, title, artist)
   VALUES(seq_songId.NEXTVAL, title, artist);
 
   COMMIT;
-  result := '³ë·¡ µî·ÏÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.';
+  result := 'ë…¸ë˜ ë“±ë¡ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.';
 
 EXCEPTION
     WHEN empty_title THEN
-       result := 'Á¦¸ñÀÌ ÀÔ·ÂµÇÁö ¾Ê¾Ò½À´Ï´Ù.';
+       result := 'ì œëª©ì´ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.';
     WHEN empty_artist THEN
-        result := '¾ÆÆ¼½ºÆ®°¡ ÀÔ·ÂµÇÁö ¾Ê¾Ò½À´Ï´Ù.';
+        result := 'ì•„í‹°ìŠ¤íŠ¸ê°€ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.';
 END;
